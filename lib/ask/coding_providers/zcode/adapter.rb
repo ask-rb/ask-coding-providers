@@ -123,6 +123,11 @@ module Ask
           @client.get_events(session_id, after_seq: after_seq, limit: limit)
         end
 
+        def get_workspace_state(workspace_path)
+          return {} unless @use_app_server && @client
+          @client.read_workspace_state(workspace_path)
+        end
+
         def respond(request_id, result)
           @client&.respond(request_id, result)
         end

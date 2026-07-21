@@ -148,6 +148,12 @@ module Ask
           })
         end
 
+        def read_workspace_state(workspace_path)
+          request("workspace/readState", {
+            workspace: { workspacePath: workspace_path, workspaceKey: workspace_path }
+          })
+        end
+
         def send_message(session_id, content)
           request("session/send", { sessionId: session_id, content: content })
         end

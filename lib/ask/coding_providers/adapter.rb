@@ -68,6 +68,11 @@ module Ask
         raise NotImplementedError, "#{self.class} must implement #respond"
       end
 
+      # Read the workspace state (model info, settings, etc.).
+      def get_workspace_state(workspace_path)
+        {}
+      end
+
       # Start the agent connection.
       def start
       end
