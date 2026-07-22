@@ -73,6 +73,16 @@ module Ask
         {}
       end
 
+      # Called when a session operation fails. The adapter can signal how
+      # the Engine should recover.
+      #
+      # @param session_id [String] the session that failed
+      # @param error [StandardError] the error that occurred
+      # @return [Symbol, nil] :create_new to replace the session, nil to show error as-is
+      def handle_session_error(session_id, error)
+        nil  # Unknown error — let the Engine show it to the user
+      end
+
       # Start the agent connection.
       def start
       end

@@ -132,6 +132,16 @@ module Ask
           @client&.respond(request_id, result)
         end
 
+        # Handle ZCode-specific session errors.
+        # Returns :create_new for model-unavailable errors so the Engine
+        # can replace the session with a new one in the same workspace.
+        def handle_session_error(session_id, error)
+          msg = error.message
+          if msg.include?("32031") || msg.include?("模型已不可用") || msg.include?("model is no longer available")
+            :create_new
+          end
+        end
+
         private
 
         def handle_notification(method, params, request_id)
