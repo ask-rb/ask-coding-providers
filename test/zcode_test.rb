@@ -157,19 +157,23 @@ class ZCodeTest < Minitest::Test
     assert @called
   end
 
-  def test_make_error_maps_codes
-    client = Ask::CodingProviders::ZCode::AppServerClient.new(
-      cwd: Dir.pwd, cli_path: "/usr/bin/true", request_timeout: 0.1
-    )
-    err = client.send(:make_error, { "code" => -32004, "message" => "Session closed" })
-    assert_kind_of Ask::CodingProviders::ZCode::SessionUnavailable, err
+	  def test_make_error_maps_codes
+	    client = Ask::CodingProviders::ZCode::AppServerClient.new(
+	      cwd: Dir.pwd, cli_path: "/usr/bin/true", request_timeout: 0.1
+	    )
+	    err = client.send(:make_error, { "code" => -32004, "message" => "Session closed" })
+	    assert_kind_of Ask::CodingProviders::ZCode::SessionUnavailable, err
 
-    err = client.send(:make_error, { "code" => -32010, "message" => "Already running" })
-    assert_kind_of Ask::CodingProviders::ZCode::PromptAlreadyRunning, err
+	    err = client.send(:make_error, { "code" => -32010, "message" => "Already running" })
+	    assert_kind_of Ask::CodingProviders::ZCode::PromptAlreadyRunning, err
 
-    err = client.send(:make_error, { "code" => -1, "message" => "Generic" })
-    assert_kind_of Ask::CodingProviders::ZCode::Error, err
-  end
+	    err = client.send(:make_error, { "code" => -32031, "message" => "历史任务使用的模型已不可用" })
+	    assert_kind_of Ask::CodingProviders::ZCode::Error, err
+	    assert_includes err.message, "-32031"
+
+	    err = client.send(:make_error, { "code" => -1, "message" => "Generic" })
+	    assert_kind_of Ask::CodingProviders::ZCode::Error, err
+	  end
 
   def test_create_session_parses_result
     # Test the high-level API by stubbing the low-level request method
