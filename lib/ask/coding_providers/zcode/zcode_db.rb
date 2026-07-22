@@ -8,13 +8,13 @@ module Ask
       # Wraps the ZCode SQLite database, centralizing all session/project queries.
       #
       # Usage:
-      #   db = SessionDB.new
+      #   db = ZCodeDB.new
       #   projects = db.list_projects
       #   sessions = db.find_sessions(directory: "/path")
       #
       # All methods return nil or empty arrays on error (never raise).
       # This makes it safe to use from any context without wrapping every call.
-      class SessionDB
+      class ZCodeDB
       def initialize(db_path = nil)
         @db_path = db_path || File.expand_path("~/.zcode/cli/db/db.sqlite")
       end

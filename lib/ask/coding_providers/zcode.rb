@@ -3,7 +3,7 @@
 require_relative "zcode/app_server_client"
 require_relative "zcode/client"
 require_relative "zcode/adapter"
-require_relative "zcode/session_db"
+require_relative "zcode/zcode_db"
 
 module Ask
   module CodingProviders

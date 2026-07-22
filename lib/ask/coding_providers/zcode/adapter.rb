@@ -15,7 +15,7 @@ module Ask
           @client = nil
           @use_app_server = ENV.fetch("ZCODE_USE_APP_SERVER", "1") != "0"
           @fallback = nil
-          @session_db = SessionDB.new
+          @session_db = ZCodeDB.new
         end
 
         def start
