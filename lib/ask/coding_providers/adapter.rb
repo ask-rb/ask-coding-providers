@@ -83,6 +83,48 @@ module Ask
         nil  # Unknown error — let the Engine show it to the user
       end
 
+      # Optional: list available projects with session counts.
+      # Returns [{project_id:, directory:, session_count:}] or nil.
+      def list_projects
+        nil
+      end
+
+      # Optional: find sessions in a directory.
+      # Returns [{session_id:, title:, updated:}] or [].
+      def find_sessions(directory:, limit: 20)
+        []
+      end
+
+      # Optional: find the single most recent session.
+      # Returns {session_id:, directory:} or nil.
+      def find_recent_session
+        nil
+      end
+
+      # Optional: find the most recent TUI session in a workspace.
+      # Returns {session_id:, title:, directory:} or nil.
+      def find_recent_tui_session(workspace_path)
+        nil
+      end
+
+      # Optional: get a session's workspace directory by ID.
+      # Returns directory string or nil.
+      def session_directory(session_id)
+        nil
+      end
+
+      # Optional: get session message history.
+      # Returns [{text:, role:, origin:}] or [].
+      def session_history(session_id, limit: 100)
+        []
+      end
+
+      # Optional: list recent sessions across all projects.
+      # Returns [{session_id:, title:, updated:, msg_count:}] or [].
+      def recent_sessions
+        []
+      end
+
       # Start the agent connection.
       def start
       end

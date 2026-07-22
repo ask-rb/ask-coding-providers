@@ -15,6 +15,7 @@ module Ask
           @client = nil
           @use_app_server = ENV.fetch("ZCODE_USE_APP_SERVER", "1") != "0"
           @fallback = nil
+          @session_db = SessionDB.new
         end
 
         def start
@@ -140,6 +141,36 @@ module Ask
           if msg.include?("32031") || msg.include?("模型已不可用") || msg.include?("model is no longer available")
             :create_new
           end
+        end
+
+        # ── Session/project queries (delegated to SessionDB) ──
+
+        def list_projects
+          @session_db.list_projects
+        end
+
+        def find_sessions(directory:, limit: 20)
+          @session_db.find_sessions(directory: directory, limit: limit)
+        end
+
+        def find_recent_session
+          @session_db.find_recent_session
+        end
+
+        def find_recent_tui_session(workspace_path)
+          @session_db.find_recent_tui_session(workspace_path)
+        end
+
+        def session_directory(session_id)
+          @session_db.session_directory(session_id)
+        end
+
+        def session_history(session_id, limit: 100)
+          @session_db.session_history(session_id, limit: limit)
+        end
+
+        def recent_sessions
+          @session_db.recent_sessions
         end
 
         private

@@ -13,7 +13,7 @@
       <img src="./assets/0.13.2/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" class="hide">
-      <div class="timestamp">Generated <abbr class="timeago" title="2026-07-23T00:54:53+03:00">2026-07-23T00:54:53+03:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2026-07-23T01:00:33+03:00">2026-07-23T01:00:33+03:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -22,14 +22,14 @@
     <span class="group_name">All Files</span>
     (<span class="covered_percent">
       <span class="red">
-  58.76%
+  58.5%
 </span>
 
      </span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         2.28
+         2.34
        </span>
     </span> hits/line
     )
@@ -42,11 +42,11 @@
   </div>
 
   <div class="t-line-summary">
-    <b>371</b> relevant lines,
-    <span class="green"><b>218</b> lines covered</span> and
-    <span class="red"><b>153</b> lines missed. </span>
+    <b>400</b> relevant lines,
+    <span class="green"><b>234</b> lines covered</span> and
+    <span class="red"><b>166</b> lines missed. </span>
     (<span class="red">
-  58.76%
+  58.5%
 </span>
 )
   </div>
@@ -118,12 +118,12 @@
         
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#d8cde6afb516a688436e3e70d49e6d2297805927" class="src_link" title="lib/ask/coding_providers/adapter.rb">lib/ask/coding_providers/adapter.rb</a></td>
-            <td class="red strong cell--number t-file__coverage">59.26 %</td>
-            <td class="cell--number">100</td>
-            <td class="cell--number">27</td>
-            <td class="cell--number">16</td>
-            <td class="cell--number">11</td>
-            <td class="cell--number">0.59</td>
+            <td class="red strong cell--number t-file__coverage">56.10 %</td>
+            <td class="cell--number">142</td>
+            <td class="cell--number">41</td>
+            <td class="cell--number">23</td>
+            <td class="cell--number">18</td>
+            <td class="cell--number">0.56</td>
             
               <td class="green strong cell--number t-file__branch-coverage">100.00 %</td>
               <td class="cell--number">0</td>
@@ -150,12 +150,12 @@
         
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#4da998fb661a10daff23dbcc3e8b16b007b638bf" class="src_link" title="lib/ask/coding_providers/zcode/adapter.rb">lib/ask/coding_providers/zcode/adapter.rb</a></td>
-            <td class="red strong cell--number t-file__coverage">55.00 %</td>
-            <td class="cell--number">155</td>
-            <td class="cell--number">80</td>
-            <td class="cell--number">44</td>
-            <td class="cell--number">36</td>
-            <td class="cell--number">4.23</td>
+            <td class="red strong cell--number t-file__coverage">54.74 %</td>
+            <td class="cell--number">186</td>
+            <td class="cell--number">95</td>
+            <td class="cell--number">52</td>
+            <td class="cell--number">43</td>
+            <td class="cell--number">4.02</td>
             
               <td class="red strong cell--number t-file__branch-coverage">32.08 %</td>
               <td class="cell--number">53</td>
@@ -198,12 +198,12 @@
         
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#8ebec3eecefe9596d73644ea2a107e98090b3d15" class="src_link" title="lib/ask/coding_providers/zcode/session_db.rb">lib/ask/coding_providers/zcode/session_db.rb</a></td>
-            <td class="red strong cell--number t-file__coverage">21.92 %</td>
+            <td class="red strong cell--number t-file__coverage">23.29 %</td>
             <td class="cell--number">195</td>
             <td class="cell--number">73</td>
-            <td class="cell--number">16</td>
-            <td class="cell--number">57</td>
-            <td class="cell--number">0.22</td>
+            <td class="cell--number">17</td>
+            <td class="cell--number">56</td>
+            <td class="cell--number">0.73</td>
             
               <td class="red strong cell--number t-file__branch-coverage">0.00 %</td>
               <td class="cell--number">40</td>
@@ -560,7 +560,7 @@
     <h3>lib/ask/coding_providers/adapter.rb</h3>
     <h4>
       <span class="red">
-  59.26%
+  56.1%
 </span>
 
       lines covered
@@ -577,9 +577,9 @@
     
 
     <div class="t-line-summary">
-      <b>27</b> relevant lines.
-      <span class="green"><b>16</b> lines covered</span> and
-      <span class="red"><b>11</b> lines missed.</span>
+      <b>41</b> relevant lines.
+      <span class="green"><b>23</b> lines covered</span> and
+      <span class="red"><b>18</b> lines missed.</span>
     </div>
 
     
@@ -1649,12 +1649,530 @@
               
             
 
+            <code class="ruby">      # Optional: list available projects with session counts.</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="87">
+            
+
+            
+              
+            
+
+            <code class="ruby">      # Returns [{project_id:, directory:, session_count:}] or nil.</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="88">
+            
+              <span class="hits">1</span>
+            
+
+            
+              
+            
+
+            <code class="ruby">      def list_projects</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="89">
+            
+
+            
+              
+            
+
+            <code class="ruby">        nil</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="90">
+            
+
+            
+              
+            
+
+            <code class="ruby">      end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="91">
+            
+
+            
+              
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="92">
+            
+
+            
+              
+            
+
+            <code class="ruby">      # Optional: find sessions in a directory.</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="93">
+            
+
+            
+              
+            
+
+            <code class="ruby">      # Returns [{session_id:, title:, updated:}] or [].</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="94">
+            
+              <span class="hits">1</span>
+            
+
+            
+              
+            
+
+            <code class="ruby">      def find_sessions(directory:, limit: 20)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="95">
+            
+
+            
+              
+            
+
+            <code class="ruby">        []</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="96">
+            
+
+            
+              
+            
+
+            <code class="ruby">      end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="97">
+            
+
+            
+              
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="98">
+            
+
+            
+              
+            
+
+            <code class="ruby">      # Optional: find the single most recent session.</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="99">
+            
+
+            
+              
+            
+
+            <code class="ruby">      # Returns {session_id:, directory:} or nil.</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="100">
+            
+              <span class="hits">1</span>
+            
+
+            
+              
+            
+
+            <code class="ruby">      def find_recent_session</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="101">
+            
+
+            
+              
+            
+
+            <code class="ruby">        nil</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="102">
+            
+
+            
+              
+            
+
+            <code class="ruby">      end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="103">
+            
+
+            
+              
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="104">
+            
+
+            
+              
+            
+
+            <code class="ruby">      # Optional: find the most recent TUI session in a workspace.</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="105">
+            
+
+            
+              
+            
+
+            <code class="ruby">      # Returns {session_id:, title:, directory:} or nil.</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="106">
+            
+              <span class="hits">1</span>
+            
+
+            
+              
+            
+
+            <code class="ruby">      def find_recent_tui_session(workspace_path)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="107">
+            
+
+            
+              
+            
+
+            <code class="ruby">        nil</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="108">
+            
+
+            
+              
+            
+
+            <code class="ruby">      end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="109">
+            
+
+            
+              
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="110">
+            
+
+            
+              
+            
+
+            <code class="ruby">      # Optional: get a session&#39;s workspace directory by ID.</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="111">
+            
+
+            
+              
+            
+
+            <code class="ruby">      # Returns directory string or nil.</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="112">
+            
+              <span class="hits">1</span>
+            
+
+            
+              
+            
+
+            <code class="ruby">      def session_directory(session_id)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="113">
+            
+
+            
+              
+            
+
+            <code class="ruby">        nil</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="114">
+            
+
+            
+              
+            
+
+            <code class="ruby">      end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="115">
+            
+
+            
+              
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="116">
+            
+
+            
+              
+            
+
+            <code class="ruby">      # Optional: get session message history.</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="117">
+            
+
+            
+              
+            
+
+            <code class="ruby">      # Returns [{text:, role:, origin:}] or [].</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="118">
+            
+              <span class="hits">1</span>
+            
+
+            
+              
+            
+
+            <code class="ruby">      def session_history(session_id, limit: 100)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="119">
+            
+
+            
+              
+            
+
+            <code class="ruby">        []</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="120">
+            
+
+            
+              
+            
+
+            <code class="ruby">      end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="121">
+            
+
+            
+              
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="122">
+            
+
+            
+              
+            
+
+            <code class="ruby">      # Optional: list recent sessions across all projects.</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="123">
+            
+
+            
+              
+            
+
+            <code class="ruby">      # Returns [{session_id:, title:, updated:, msg_count:}] or [].</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="124">
+            
+              <span class="hits">1</span>
+            
+
+            
+              
+            
+
+            <code class="ruby">      def recent_sessions</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="125">
+            
+
+            
+              
+            
+
+            <code class="ruby">        []</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="126">
+            
+
+            
+              
+            
+
+            <code class="ruby">      end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="127">
+            
+
+            
+              
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="128">
+            
+
+            
+              
+            
+
             <code class="ruby">      # Start the agent connection.</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="87">
+          <li class="covered" data-hits="1" data-linenumber="129">
             
               <span class="hits">1</span>
             
@@ -1668,7 +2186,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="88">
+          <li class="never" data-hits="" data-linenumber="130">
             
 
             
@@ -1680,7 +2198,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="89">
+          <li class="never" data-hits="" data-linenumber="131">
             
 
             
@@ -1692,7 +2210,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="90">
+          <li class="never" data-hits="" data-linenumber="132">
             
 
             
@@ -1704,7 +2222,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="91">
+          <li class="covered" data-hits="1" data-linenumber="133">
             
               <span class="hits">1</span>
             
@@ -1718,7 +2236,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="92">
+          <li class="never" data-hits="" data-linenumber="134">
             
 
             
@@ -1730,7 +2248,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="93">
+          <li class="never" data-hits="" data-linenumber="135">
             
 
             
@@ -1742,7 +2260,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="94">
+          <li class="never" data-hits="" data-linenumber="136">
             
 
             
@@ -1754,7 +2272,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="95">
+          <li class="covered" data-hits="1" data-linenumber="137">
             
               <span class="hits">1</span>
             
@@ -1768,7 +2286,7 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="96">
+          <li class="missed" data-hits="0" data-linenumber="138">
             
 
             
@@ -1780,7 +2298,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="97">
+          <li class="never" data-hits="" data-linenumber="139">
             
 
             
@@ -1792,7 +2310,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="98">
+          <li class="never" data-hits="" data-linenumber="140">
             
 
             
@@ -1804,7 +2322,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="99">
+          <li class="never" data-hits="" data-linenumber="141">
             
 
             
@@ -1816,7 +2334,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="100">
+          <li class="never" data-hits="" data-linenumber="142">
             
 
             
@@ -2196,7 +2714,7 @@
     <h3>lib/ask/coding_providers/zcode/adapter.rb</h3>
     <h4>
       <span class="red">
-  55.0%
+  54.74%
 </span>
 
       lines covered
@@ -2213,9 +2731,9 @@
     
 
     <div class="t-line-summary">
-      <b>80</b> relevant lines.
-      <span class="green"><b>44</b> lines covered</span> and
-      <span class="red"><b>36</b> lines missed.</span>
+      <b>95</b> relevant lines.
+      <span class="green"><b>52</b> lines covered</span> and
+      <span class="red"><b>43</b> lines missed.</span>
     </div>
 
     
@@ -2458,14 +2976,16 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="18">
+          <li class="covered" data-hits="37" data-linenumber="18">
+            
+              <span class="hits">37</span>
             
 
             
               
             
 
-            <code class="ruby">        end</code>
+            <code class="ruby">          @session_db = SessionDB.new</code>
           </li>
         </div>
       
@@ -2477,12 +2997,24 @@
               
             
 
+            <code class="ruby">        end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="20">
+            
+
+            
+              
+            
+
             <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="20">
+          <li class="covered" data-hits="1" data-linenumber="21">
             
               <span class="hits">1</span>
             
@@ -2496,7 +3028,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="21">
+          <li class="covered" data-hits="2" data-linenumber="22">
             
               <span class="hits">2</span>
             
@@ -2514,7 +3046,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="22">
+          <li class="covered" data-hits="1" data-linenumber="23">
             
               <span class="hits">1</span>
             
@@ -2528,7 +3060,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="23">
+          <li class="covered" data-hits="1" data-linenumber="24">
             
               <span class="hits">1</span>
             
@@ -2542,7 +3074,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="24">
+          <li class="covered" data-hits="1" data-linenumber="25">
             
               <span class="hits">1</span>
             
@@ -2556,7 +3088,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="25">
+          <li class="never" data-hits="" data-linenumber="26">
             
 
             
@@ -2572,7 +3104,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="26">
+          <li class="covered" data-hits="1" data-linenumber="27">
             
               <span class="hits">1</span>
             
@@ -2586,7 +3118,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="27">
+          <li class="never" data-hits="" data-linenumber="28">
             
 
             
@@ -2598,7 +3130,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="28">
+          <li class="never" data-hits="" data-linenumber="29">
             
 
             
@@ -2610,7 +3142,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="29">
+          <li class="never" data-hits="" data-linenumber="30">
             
 
             
@@ -2622,7 +3154,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="30">
+          <li class="covered" data-hits="1" data-linenumber="31">
             
               <span class="hits">1</span>
             
@@ -2636,7 +3168,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="39" data-linenumber="31">
+          <li class="covered" data-hits="39" data-linenumber="32">
             
               <span class="hits">39</span>
             
@@ -2658,7 +3190,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="39" data-linenumber="32">
+          <li class="covered" data-hits="39" data-linenumber="33">
             
               <span class="hits">39</span>
             
@@ -2672,7 +3204,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="33">
+          <li class="never" data-hits="" data-linenumber="34">
             
 
             
@@ -2684,7 +3216,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="34">
+          <li class="never" data-hits="" data-linenumber="35">
             
 
             
@@ -2696,7 +3228,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="35">
+          <li class="covered" data-hits="1" data-linenumber="36">
             
               <span class="hits">1</span>
             
@@ -2710,7 +3242,7 @@
         </div>
       
         <div>
-          <li class="missed-branch" data-hits="2" data-linenumber="36">
+          <li class="missed-branch" data-hits="2" data-linenumber="37">
             
               <span class="hits">2</span>
             
@@ -2740,7 +3272,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="37">
+          <li class="never" data-hits="" data-linenumber="38">
             
 
             
@@ -2752,7 +3284,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="38">
+          <li class="never" data-hits="" data-linenumber="39">
             
 
             
@@ -2764,7 +3296,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="39">
+          <li class="covered" data-hits="1" data-linenumber="40">
             
               <span class="hits">1</span>
             
@@ -2778,7 +3310,7 @@
         </div>
       
         <div>
-          <li class="missed-branch" data-hits="1" data-linenumber="40">
+          <li class="missed-branch" data-hits="1" data-linenumber="41">
             
               <span class="hits">1</span>
             
@@ -2800,7 +3332,7 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="41">
+          <li class="missed" data-hits="0" data-linenumber="42">
             
 
             
@@ -2812,7 +3344,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="42">
+          <li class="never" data-hits="" data-linenumber="43">
             
 
             
@@ -2824,7 +3356,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="43">
+          <li class="never" data-hits="" data-linenumber="44">
             
 
             
@@ -2836,7 +3368,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="44">
+          <li class="covered" data-hits="1" data-linenumber="45">
             
               <span class="hits">1</span>
             
@@ -2850,7 +3382,7 @@
         </div>
       
         <div>
-          <li class="missed-branch" data-hits="1" data-linenumber="45">
+          <li class="missed-branch" data-hits="1" data-linenumber="46">
             
               <span class="hits">1</span>
             
@@ -2872,7 +3404,7 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="46">
+          <li class="missed" data-hits="0" data-linenumber="47">
             
 
             
@@ -2884,7 +3416,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="47">
+          <li class="never" data-hits="" data-linenumber="48">
             
 
             
@@ -2896,7 +3428,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="48">
+          <li class="never" data-hits="" data-linenumber="49">
             
 
             
@@ -2908,7 +3440,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="49">
+          <li class="covered" data-hits="1" data-linenumber="50">
             
               <span class="hits">1</span>
             
@@ -2922,7 +3454,7 @@
         </div>
       
         <div>
-          <li class="missed-branch" data-hits="1" data-linenumber="50">
+          <li class="missed-branch" data-hits="1" data-linenumber="51">
             
               <span class="hits">1</span>
             
@@ -2944,7 +3476,7 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="51">
+          <li class="missed" data-hits="0" data-linenumber="52">
             
 
             
@@ -2956,7 +3488,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="52">
+          <li class="never" data-hits="" data-linenumber="53">
             
 
             
@@ -2968,7 +3500,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="53">
+          <li class="never" data-hits="" data-linenumber="54">
             
 
             
@@ -2980,7 +3512,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="54">
+          <li class="covered" data-hits="1" data-linenumber="55">
             
               <span class="hits">1</span>
             
@@ -2994,7 +3526,7 @@
         </div>
       
         <div>
-          <li class="missed-branch" data-hits="1" data-linenumber="55">
+          <li class="missed-branch" data-hits="1" data-linenumber="56">
             
               <span class="hits">1</span>
             
@@ -3016,7 +3548,7 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="56">
+          <li class="missed" data-hits="0" data-linenumber="57">
             
 
             
@@ -3028,7 +3560,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="57">
+          <li class="never" data-hits="" data-linenumber="58">
             
 
             
@@ -3040,7 +3572,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="58">
+          <li class="never" data-hits="" data-linenumber="59">
             
 
             
@@ -3052,7 +3584,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="59">
+          <li class="covered" data-hits="1" data-linenumber="60">
             
               <span class="hits">1</span>
             
@@ -3066,7 +3598,7 @@
         </div>
       
         <div>
-          <li class="missed-branch" data-hits="1" data-linenumber="60">
+          <li class="missed-branch" data-hits="1" data-linenumber="61">
             
               <span class="hits">1</span>
             
@@ -3084,7 +3616,7 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="61">
+          <li class="missed" data-hits="0" data-linenumber="62">
             
 
             
@@ -3096,7 +3628,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="62">
+          <li class="never" data-hits="" data-linenumber="63">
             
 
             
@@ -3112,7 +3644,7 @@
         </div>
       
         <div>
-          <li class="missed-branch" data-hits="1" data-linenumber="63">
+          <li class="missed-branch" data-hits="1" data-linenumber="64">
             
               <span class="hits">1</span>
             
@@ -3134,7 +3666,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="64">
+          <li class="never" data-hits="" data-linenumber="65">
             
 
             
@@ -3146,7 +3678,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="65">
+          <li class="never" data-hits="" data-linenumber="66">
             
 
             
@@ -3158,7 +3690,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="66">
+          <li class="never" data-hits="" data-linenumber="67">
             
 
             
@@ -3170,7 +3702,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="67">
+          <li class="covered" data-hits="1" data-linenumber="68">
             
               <span class="hits">1</span>
             
@@ -3184,7 +3716,7 @@
         </div>
       
         <div>
-          <li class="missed-branch" data-hits="1" data-linenumber="68">
+          <li class="missed-branch" data-hits="1" data-linenumber="69">
             
               <span class="hits">1</span>
             
@@ -3206,7 +3738,7 @@
         </div>
       
         <div>
-          <li class="missed-branch" data-hits="1" data-linenumber="69">
+          <li class="missed-branch" data-hits="1" data-linenumber="70">
             
               <span class="hits">1</span>
             
@@ -3228,7 +3760,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="70">
+          <li class="never" data-hits="" data-linenumber="71">
             
 
             
@@ -3236,18 +3768,6 @@
             
 
             <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="71">
-            
-
-            
-              
-            
-
-            <code class="ruby">          ev_queue = Queue.new</code>
           </li>
         </div>
       
@@ -3259,7 +3779,7 @@
               
             
 
-            <code class="ruby">          my_turn_id = nil</code>
+            <code class="ruby">          ev_queue = Queue.new</code>
           </li>
         </div>
       
@@ -3271,12 +3791,24 @@
               
             
 
+            <code class="ruby">          my_turn_id = nil</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="74">
+            
+
+            
+              
+            
+
             <code class="ruby">          done = false</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="74">
+          <li class="never" data-hits="" data-linenumber="75">
             
 
             
@@ -3288,7 +3820,7 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="75">
+          <li class="missed" data-hits="0" data-linenumber="76">
             
 
             
@@ -3300,7 +3832,7 @@
         </div>
       
         <div>
-          <li class="missed-branch" data-hits="0" data-linenumber="76">
+          <li class="missed-branch" data-hits="0" data-linenumber="77">
             
 
             
@@ -3316,7 +3848,7 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="77">
+          <li class="missed" data-hits="0" data-linenumber="78">
             
 
             
@@ -3328,7 +3860,7 @@
         </div>
       
         <div>
-          <li class="missed-branch" data-hits="0" data-linenumber="78">
+          <li class="missed-branch" data-hits="0" data-linenumber="79">
             
 
             
@@ -3348,7 +3880,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="79">
+          <li class="never" data-hits="" data-linenumber="80">
             
 
             
@@ -3360,7 +3892,7 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="80">
+          <li class="missed" data-hits="0" data-linenumber="81">
             
 
             
@@ -3372,7 +3904,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="81">
+          <li class="never" data-hits="" data-linenumber="82">
             
 
             
@@ -3384,7 +3916,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="82">
+          <li class="never" data-hits="" data-linenumber="83">
             
 
             
@@ -3396,7 +3928,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="83">
+          <li class="never" data-hits="" data-linenumber="84">
             
 
             
@@ -3408,7 +3940,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="84">
+          <li class="never" data-hits="" data-linenumber="85">
             
 
             
@@ -3416,26 +3948,6 @@
             
 
             <code class="ruby">              }</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed-branch" data-hits="0" data-linenumber="85">
-            
-
-            
-              
-                <span class="hits" title="then branch hit 0 times">
-                  then: 0
-                </span>
-              
-                <span class="hits" title="else branch hit 0 times">
-                  else: 0
-                </span>
-              
-            
-
-            <code class="ruby">              my_turn_id ||= ev[:turn_id] if ev[:type] == &quot;turn.started&quot;</code>
           </li>
         </div>
       
@@ -3455,12 +3967,32 @@
               
             
 
+            <code class="ruby">              my_turn_id ||= ev[:turn_id] if ev[:type] == &quot;turn.started&quot;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed-branch" data-hits="0" data-linenumber="87">
+            
+
+            
+              
+                <span class="hits" title="then branch hit 0 times">
+                  then: 0
+                </span>
+              
+                <span class="hits" title="else branch hit 0 times">
+                  else: 0
+                </span>
+              
+            
+
             <code class="ruby">              if my_turn_id.nil? || ev[:turn_id] == my_turn_id</code>
           </li>
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="87">
+          <li class="missed" data-hits="0" data-linenumber="88">
             
 
             
@@ -3472,7 +4004,7 @@
         </div>
       
         <div>
-          <li class="missed-branch" data-hits="0" data-linenumber="88">
+          <li class="missed-branch" data-hits="0" data-linenumber="89">
             
 
             
@@ -3492,7 +4024,7 @@
         </div>
       
         <div>
-          <li class="missed-branch" data-hits="" data-linenumber="89">
+          <li class="missed-branch" data-hits="" data-linenumber="90">
             
 
             
@@ -3508,7 +4040,7 @@
         </div>
       
         <div>
-          <li class="missed-branch" data-hits="0" data-linenumber="90">
+          <li class="missed-branch" data-hits="0" data-linenumber="91">
             
 
             
@@ -3528,7 +4060,7 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="91">
+          <li class="missed" data-hits="0" data-linenumber="92">
             
 
             
@@ -3540,7 +4072,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="92">
+          <li class="never" data-hits="" data-linenumber="93">
             
 
             
@@ -3552,7 +4084,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="93">
+          <li class="never" data-hits="" data-linenumber="94">
             
 
             
@@ -3564,7 +4096,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="94">
+          <li class="never" data-hits="" data-linenumber="95">
             
 
             
@@ -3576,7 +4108,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="95">
+          <li class="never" data-hits="" data-linenumber="96">
             
 
             
@@ -3588,7 +4120,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="96">
+          <li class="never" data-hits="" data-linenumber="97">
             
 
             
@@ -3600,7 +4132,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="97">
+          <li class="never" data-hits="" data-linenumber="98">
             
 
             
@@ -3612,7 +4144,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="98">
+          <li class="never" data-hits="" data-linenumber="99">
             
 
             
@@ -3624,7 +4156,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="99">
+          <li class="never" data-hits="" data-linenumber="100">
             
 
             
@@ -3636,7 +4168,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="100">
+          <li class="never" data-hits="" data-linenumber="101">
             
 
             
@@ -3648,7 +4180,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="101">
+          <li class="never" data-hits="" data-linenumber="102">
             
 
             
@@ -3660,7 +4192,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="102">
+          <li class="never" data-hits="" data-linenumber="103">
             
 
             
@@ -3672,7 +4204,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="103">
+          <li class="never" data-hits="" data-linenumber="104">
             
 
             
@@ -3684,7 +4216,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="104">
+          <li class="never" data-hits="" data-linenumber="105">
             
 
             
@@ -3696,7 +4228,7 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="105">
+          <li class="missed" data-hits="0" data-linenumber="106">
             
 
             
@@ -3708,7 +4240,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="106">
+          <li class="never" data-hits="" data-linenumber="107">
             
 
             
@@ -3720,7 +4252,7 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="107">
+          <li class="missed" data-hits="0" data-linenumber="108">
             
 
             
@@ -3732,7 +4264,7 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="108">
+          <li class="missed" data-hits="0" data-linenumber="109">
             
 
             
@@ -3744,7 +4276,7 @@
         </div>
       
         <div>
-          <li class="missed-branch" data-hits="0" data-linenumber="109">
+          <li class="missed-branch" data-hits="0" data-linenumber="110">
             
 
             
@@ -3760,7 +4292,7 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="110">
+          <li class="missed" data-hits="0" data-linenumber="111">
             
 
             
@@ -3772,7 +4304,7 @@
         </div>
       
         <div>
-          <li class="missed-branch" data-hits="0" data-linenumber="111">
+          <li class="missed-branch" data-hits="0" data-linenumber="112">
             
 
             
@@ -3792,7 +4324,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="112">
+          <li class="never" data-hits="" data-linenumber="113">
             
 
             
@@ -3804,7 +4336,7 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="113">
+          <li class="missed" data-hits="0" data-linenumber="114">
             
 
             
@@ -3816,7 +4348,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="114">
+          <li class="never" data-hits="" data-linenumber="115">
             
 
             
@@ -3828,7 +4360,7 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="115">
+          <li class="missed" data-hits="0" data-linenumber="116">
             
 
             
@@ -3840,7 +4372,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="116">
+          <li class="never" data-hits="" data-linenumber="117">
             
 
             
@@ -3852,7 +4384,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="117">
+          <li class="never" data-hits="" data-linenumber="118">
             
 
             
@@ -3864,7 +4396,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="118">
+          <li class="never" data-hits="" data-linenumber="119">
             
 
             
@@ -3876,7 +4408,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="119">
+          <li class="never" data-hits="" data-linenumber="120">
             
 
             
@@ -3888,7 +4420,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="120">
+          <li class="never" data-hits="" data-linenumber="121">
             
 
             
@@ -3900,7 +4432,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="121">
+          <li class="covered" data-hits="1" data-linenumber="122">
             
               <span class="hits">1</span>
             
@@ -3914,7 +4446,7 @@
         </div>
       
         <div>
-          <li class="missed-branch" data-hits="1" data-linenumber="122">
+          <li class="missed-branch" data-hits="1" data-linenumber="123">
             
               <span class="hits">1</span>
             
@@ -3936,7 +4468,7 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="123">
+          <li class="missed" data-hits="0" data-linenumber="124">
             
 
             
@@ -3948,7 +4480,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="124">
+          <li class="never" data-hits="" data-linenumber="125">
             
 
             
@@ -3960,7 +4492,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="125">
+          <li class="never" data-hits="" data-linenumber="126">
             
 
             
@@ -3972,7 +4504,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="126">
+          <li class="covered" data-hits="1" data-linenumber="127">
             
               <span class="hits">1</span>
             
@@ -3986,7 +4518,7 @@
         </div>
       
         <div>
-          <li class="missed-branch" data-hits="0" data-linenumber="127">
+          <li class="missed-branch" data-hits="0" data-linenumber="128">
             
 
             
@@ -4006,7 +4538,7 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="128">
+          <li class="missed" data-hits="0" data-linenumber="129">
             
 
             
@@ -4018,7 +4550,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="129">
+          <li class="never" data-hits="" data-linenumber="130">
             
 
             
@@ -4030,7 +4562,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="130">
+          <li class="never" data-hits="" data-linenumber="131">
             
 
             
@@ -4042,7 +4574,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="131">
+          <li class="covered" data-hits="1" data-linenumber="132">
             
               <span class="hits">1</span>
             
@@ -4056,7 +4588,7 @@
         </div>
       
         <div>
-          <li class="missed-branch" data-hits="1" data-linenumber="132">
+          <li class="missed-branch" data-hits="1" data-linenumber="133">
             
               <span class="hits">1</span>
             
@@ -4078,7 +4610,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="133">
+          <li class="never" data-hits="" data-linenumber="134">
             
 
             
@@ -4090,7 +4622,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="134">
+          <li class="never" data-hits="" data-linenumber="135">
             
 
             
@@ -4102,7 +4634,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="135">
+          <li class="never" data-hits="" data-linenumber="136">
             
 
             
@@ -4114,7 +4646,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="136">
+          <li class="never" data-hits="" data-linenumber="137">
             
 
             
@@ -4126,7 +4658,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="137">
+          <li class="never" data-hits="" data-linenumber="138">
             
 
             
@@ -4138,7 +4670,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="138">
+          <li class="covered" data-hits="1" data-linenumber="139">
             
               <span class="hits">1</span>
             
@@ -4152,7 +4684,7 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="139">
+          <li class="missed" data-hits="0" data-linenumber="140">
             
 
             
@@ -4164,7 +4696,7 @@
         </div>
       
         <div>
-          <li class="missed-branch" data-hits="0" data-linenumber="140">
+          <li class="missed-branch" data-hits="0" data-linenumber="141">
             
 
             
@@ -4184,7 +4716,7 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="141">
+          <li class="missed" data-hits="0" data-linenumber="142">
             
 
             
@@ -4196,7 +4728,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="142">
+          <li class="never" data-hits="" data-linenumber="143">
             
 
             
@@ -4208,7 +4740,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="143">
+          <li class="never" data-hits="" data-linenumber="144">
             
 
             
@@ -4220,7 +4752,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="144">
+          <li class="never" data-hits="" data-linenumber="145">
             
 
             
@@ -4232,7 +4764,381 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="145">
+          <li class="never" data-hits="" data-linenumber="146">
+            
+
+            
+              
+            
+
+            <code class="ruby">        # ── Session/project queries (delegated to SessionDB) ──</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="147">
+            
+
+            
+              
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="148">
+            
+              <span class="hits">1</span>
+            
+
+            
+              
+            
+
+            <code class="ruby">        def list_projects</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="149">
+            
+
+            
+              
+            
+
+            <code class="ruby">          @session_db.list_projects</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="150">
+            
+
+            
+              
+            
+
+            <code class="ruby">        end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="151">
+            
+
+            
+              
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="152">
+            
+              <span class="hits">1</span>
+            
+
+            
+              
+            
+
+            <code class="ruby">        def find_sessions(directory:, limit: 20)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="153">
+            
+
+            
+              
+            
+
+            <code class="ruby">          @session_db.find_sessions(directory: directory, limit: limit)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="154">
+            
+
+            
+              
+            
+
+            <code class="ruby">        end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="155">
+            
+
+            
+              
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="156">
+            
+              <span class="hits">1</span>
+            
+
+            
+              
+            
+
+            <code class="ruby">        def find_recent_session</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="157">
+            
+
+            
+              
+            
+
+            <code class="ruby">          @session_db.find_recent_session</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="158">
+            
+
+            
+              
+            
+
+            <code class="ruby">        end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="159">
+            
+
+            
+              
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="160">
+            
+              <span class="hits">1</span>
+            
+
+            
+              
+            
+
+            <code class="ruby">        def find_recent_tui_session(workspace_path)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="161">
+            
+
+            
+              
+            
+
+            <code class="ruby">          @session_db.find_recent_tui_session(workspace_path)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="162">
+            
+
+            
+              
+            
+
+            <code class="ruby">        end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="163">
+            
+
+            
+              
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="164">
+            
+              <span class="hits">1</span>
+            
+
+            
+              
+            
+
+            <code class="ruby">        def session_directory(session_id)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="165">
+            
+
+            
+              
+            
+
+            <code class="ruby">          @session_db.session_directory(session_id)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="166">
+            
+
+            
+              
+            
+
+            <code class="ruby">        end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="167">
+            
+
+            
+              
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="168">
+            
+              <span class="hits">1</span>
+            
+
+            
+              
+            
+
+            <code class="ruby">        def session_history(session_id, limit: 100)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="169">
+            
+
+            
+              
+            
+
+            <code class="ruby">          @session_db.session_history(session_id, limit: limit)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="170">
+            
+
+            
+              
+            
+
+            <code class="ruby">        end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="171">
+            
+
+            
+              
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="172">
+            
+              <span class="hits">1</span>
+            
+
+            
+              
+            
+
+            <code class="ruby">        def recent_sessions</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="173">
+            
+
+            
+              
+            
+
+            <code class="ruby">          @session_db.recent_sessions</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="174">
+            
+
+            
+              
+            
+
+            <code class="ruby">        end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="175">
+            
+
+            
+              
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="176">
             
               <span class="hits">1</span>
             
@@ -4246,7 +5152,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="146">
+          <li class="never" data-hits="" data-linenumber="177">
             
 
             
@@ -4258,7 +5164,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="147">
+          <li class="covered" data-hits="1" data-linenumber="178">
             
               <span class="hits">1</span>
             
@@ -4272,7 +5178,7 @@
         </div>
       
         <div>
-          <li class="missed-branch" data-hits="0" data-linenumber="148">
+          <li class="missed-branch" data-hits="0" data-linenumber="179">
             
 
             
@@ -4292,7 +5198,7 @@
         </div>
       
         <div>
-          <li class="missed-branch" data-hits="0" data-linenumber="149">
+          <li class="missed-branch" data-hits="0" data-linenumber="180">
             
 
             
@@ -4312,7 +5218,7 @@
         </div>
       
         <div>
-          <li class="missed-branch" data-hits="0" data-linenumber="150">
+          <li class="missed-branch" data-hits="0" data-linenumber="181">
             
 
             
@@ -4332,7 +5238,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="151">
+          <li class="never" data-hits="" data-linenumber="182">
             
 
             
@@ -4344,7 +5250,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="152">
+          <li class="never" data-hits="" data-linenumber="183">
             
 
             
@@ -4356,7 +5262,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="153">
+          <li class="never" data-hits="" data-linenumber="184">
             
 
             
@@ -4368,7 +5274,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="154">
+          <li class="never" data-hits="" data-linenumber="185">
             
 
             
@@ -4380,7 +5286,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="155">
+          <li class="never" data-hits="" data-linenumber="186">
             
 
             
@@ -8645,7 +9551,7 @@
     <h3>lib/ask/coding_providers/zcode/session_db.rb</h3>
     <h4>
       <span class="red">
-  21.92%
+  23.29%
 </span>
 
       lines covered
@@ -8663,8 +9569,8 @@
 
     <div class="t-line-summary">
       <b>73</b> relevant lines.
-      <span class="green"><b>16</b> lines covered</span> and
-      <span class="red"><b>57</b> lines missed.</span>
+      <span class="green"><b>17</b> lines covered</span> and
+      <span class="red"><b>56</b> lines missed.</span>
     </div>
 
     
@@ -8909,7 +9815,9 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="19">
+          <li class="covered" data-hits="37" data-linenumber="19">
+            
+              <span class="hits">37</span>
             
 
             
