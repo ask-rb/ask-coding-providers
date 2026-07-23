@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 
+require_relative "codex/app_server_client"
+require_relative "codex/adapter"
 require_relative "codex/codex_db"
 
 module Ask
   module CodingProviders
-    # Codex database reader — queries Codex's threads SQLite store.
-    # See {CodexDB} for session/project lookup methods.
     module Codex
+      class Error < Ask::CodingProviders::Error; end
+      class TimeoutError < Ask::CodingProviders::TimeoutError; end
     end
   end
 end
