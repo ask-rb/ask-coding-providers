@@ -38,13 +38,14 @@ module Ask
           @provider = nil
         end
 
-        def start
-          return if @started
-          # Initialize the provider once (it's stateless, handles its own API keys)
-          klass = Ask::Provider.resolve(@provider_slug)
-          @provider = klass.new(api_key: ENV["#{@provider_slug.upcase}_API_KEY"])
-          @started = true
-        end
+  def start
+    return if @started
+    klass = Ask::Provider.resolve(@provider_slug)
+    compat = klass.respond_to?(:compat_config) ? klass.compat_config : {}
+    api_key = ENV[compat[:alternate_env].to_s] || ENV[compat[:api_key_env].to_s] || ENV["#{@provider_slug.upcase}_API_KEY"]
+    @provider = klass.new(api_key: api_key)
+    @started = true
+  end
 
         def stop
           @started = false
@@ -132,12 +133,22 @@ module Ask
           # No reverse requests in basic mode
         end
 
-        def get_workspace_state(workspace_path)
-          # No workspace state to report
-          {}
-        end
+	  def get_workspace_state(workspace_path)
+	    # No workspace state to report
+	    {}
+	  end
 
-        private
+	  # Build an AskAgent adapter from config.
+	  # Reads ASK_AGENT_MODEL, ASK_AGENT_LLM_PROVIDER, ASK_AGENT_MAX_TURNS from ENV.
+	  def self.from_config(model: nil, llm_provider: nil, max_turns: nil, **)
+	    new(
+	      model: model || ENV.fetch("ASK_AGENT_MODEL", "deepseek-v4-flash"),
+	      provider: llm_provider || ENV.fetch("ASK_AGENT_LLM_PROVIDER", "opencode_go"),
+	      max_turns: (max_turns || ENV.fetch("ASK_AGENT_MAX_TURNS", "10")).to_i
+	    )
+	  end
+
+	  private
 
         def ensure_started
           raise "Adapter not started. Call #start first." unless @started
@@ -167,3 +178,5 @@ module Ask
     end
   end
 end
+
+Ask::CodingProviders.register_adapter(:ask_agent, Ask::CodingProviders::AskAgent::Adapter)

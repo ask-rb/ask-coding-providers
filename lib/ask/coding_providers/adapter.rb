@@ -137,6 +137,16 @@ module Ask
       def running?
         true
       end
+
+      # Build an adapter instance from a configuration hash.
+      # Override in subclasses to extract adapter-specific settings.
+      # The default passes the entire hash to +new+.
+      #
+      # @param config [Hash] configuration options (typically from ENV)
+      # @return [Adapter] a configured adapter instance
+      def self.from_config(**config)
+        new(**config)
+      end
     end
   end
 end

@@ -169,11 +169,17 @@ module Ask
           @session_db.session_history(session_id, limit: limit)
         end
 
-        def recent_sessions
-          @session_db.recent_sessions
-        end
+	        def recent_sessions
+	          @session_db.recent_sessions
+	        end
 
-        private
+	        # Build a ZCode adapter from config.
+	        # Accepts :cwd, :cli_path, :request_timeout.
+	        def self.from_config(cwd: Dir.pwd, cli_path: nil, request_timeout: 600, **)
+	          new(cwd: cwd, cli_path: cli_path, request_timeout: request_timeout)
+	        end
+
+	        private
 
         def handle_notification(method, params, request_id)
           return unless request_id
@@ -184,3 +190,5 @@ module Ask
     end
   end
 end
+
+Ask::CodingProviders.register_adapter(:zcode, Ask::CodingProviders::ZCode::Adapter)

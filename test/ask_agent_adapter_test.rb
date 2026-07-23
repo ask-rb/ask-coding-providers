@@ -107,4 +107,42 @@ class AskAgentAdapterTest < Minitest::Test
   def test_get_workspace_state_returns_empty
     assert_equal({}, @adapter.get_workspace_state("/tmp"))
   end
+
+  # ── Registry and from_config tests ──
+
+  def test_adapter_registered_in_registry
+    klass = Ask::CodingProviders.resolve_adapter("ask_agent")
+    assert_equal Ask::CodingProviders::AskAgent::Adapter, klass
+  end
+
+  def test_from_config_uses_env_defaults
+    adapter = Ask::CodingProviders::AskAgent::Adapter.from_config
+    assert_kind_of Ask::CodingProviders::AskAgent::Adapter, adapter
+    refute adapter.running?
+  end
+
+  def test_from_config_overrides_env
+    adapter = Ask::CodingProviders::AskAgent::Adapter.from_config(
+      model: "custom-model",
+      llm_provider: "custom-provider",
+      max_turns: 5
+    )
+    assert_kind_of Ask::CodingProviders::AskAgent::Adapter, adapter
+  end
+
+  def test_build_adapter_resolves_by_name
+    adapter = Ask::CodingProviders.build_adapter("ask_agent")
+    assert_kind_of Ask::CodingProviders::AskAgent::Adapter, adapter
+  end
+
+  def test_build_adapter_raises_for_unknown
+    assert_raises(Ask::CodingProviders::ConfigurationError) do
+      Ask::CodingProviders.build_adapter("nonexistent")
+    end
+  end
+
+  def test_zcode_adapter_registered
+    klass = Ask::CodingProviders.resolve_adapter("zcode")
+    assert_equal Ask::CodingProviders::ZCode::Adapter, klass
+  end
 end
