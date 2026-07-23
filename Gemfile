@@ -14,3 +14,4 @@ group :test do
   gem "ask-core", path: "/Users/kaka/Code/ask-rb/ask-core"
   gem "ask-auth", path: "/Users/kaka/Code/ask-rb/ask-auth"
 end
+gem "ask-acp", path: "../ask-acp"
