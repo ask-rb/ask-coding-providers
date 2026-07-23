@@ -117,15 +117,12 @@ module Ask
 
           # If the prompt response contains the result and we haven't sent completed yet
           if result.is_a?(Hash)
-            status = result["status"] || result[:status]
-            response_text = result["response"] || result[:response] || accumulated
-            if status == "failed" || status == "cancelled"
+            stop_reason = result["stopReason"] || result[:stopReason]
+            if stop_reason == "cancelled" || stop_reason == "refusal"
               block.call({
                 type: "turn.failed", seq: 3,
-                payload: { "error" => { "message" => "Turn #{status}" }, "sessionId" => session_id }
+                payload: { "error" => { "message" => "Turn #{stop_reason}" }, "sessionId" => session_id }
               })
-            elsif status != "completed"
-              # Already sent completed from the event, but if not, send it now
             end
           end
         rescue => e
