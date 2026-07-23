@@ -4,13 +4,12 @@ require_relative "test_helper"
 require "tmpdir"
 
 class ACPAdapterTest < Minitest::Test
+  MOCK_AGENT = File.expand_path("../fixtures/acp/mock_streaming_agent.rb", __dir__)
+
   def setup
     @tmpdir = Dir.mktmpdir("acp_adapter_test")
-    @agent_script = File.join(@tmpdir, "mock_acp_agent.rb")
-    File.write(@agent_script, MOCK_AGENT_SCRIPT)
-    File.chmod(0o755, @agent_script)
     @adapter = Ask::CodingProviders::ACP::Adapter.new(
-      command: ["ruby", @agent_script],
+      command: ["ruby", MOCK_AGENT],
       cwd: @tmpdir,
       request_timeout: 5
     )
@@ -116,35 +115,4 @@ class ACPAdapterTest < Minitest::Test
     assert_equal Ask::CodingProviders::ACP::Adapter, klass
   end
 
-  # Mock ACP agent script
-  MOCK_AGENT_SCRIPT = <<~'RUBY'
-    #!/usr/bin/env ruby
-    $stdin.sync = true; $stdout.sync = true
-    require "json"
-    $stdin.each_line do |line|
-      msg = JSON.parse(line) rescue next
-      id = msg["id"]; method = msg["method"]; params = msg["params"] || {}
-      case method
-      when "initialize"
-        r = { jsonrpc: "2.0", id: id, result: { protocolVersion: 1, capabilities: {}, serverInfo: { name: "mock", version: "1" } } }
-        $stdout.puts(JSON.generate(r)); $stdout.flush
-      when "session/new"
-        r = { jsonrpc: "2.0", id: id, result: { session: { id: "sess_#{Time.now.to_i}", status: "running" } } }
-        $stdout.puts(JSON.generate(r)); $stdout.flush
-      when "session/resume"
-        r = { jsonrpc: "2.0", id: id, result: { session: { id: params["sessionId"], status: "running" } } }
-        $stdout.puts(JSON.generate(r)); $stdout.flush
-      when "session/prompt"
-        $stdout.puts(JSON.generate({ jsonrpc: "2.0", method: "text", params: { sessionId: params["sessionId"], content: "Hello!" } }))
-        $stdout.flush
-        $stdout.puts(JSON.generate({ jsonrpc: "2.0", method: "turn_complete", params: { sessionId: params["sessionId"] } }))
-        $stdout.flush
-        r = { jsonrpc: "2.0", id: id, result: { status: "completed" } }
-        $stdout.puts(JSON.generate(r)); $stdout.flush
-      else
-        r = { jsonrpc: "2.0", id: id, result: {} }
-        $stdout.puts(JSON.generate(r)); $stdout.flush
-      end
-    end
-  RUBY
 end
