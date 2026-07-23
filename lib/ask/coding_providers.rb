@@ -48,3 +48,4 @@ end
 
 require_relative "coding_providers/zcode"
 require_relative "coding_providers/ask_agent"
+require_relative "coding_providers/codex"
