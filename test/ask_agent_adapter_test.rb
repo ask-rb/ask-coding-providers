@@ -55,8 +55,15 @@ class AskAgentAdapterTest < Minitest::Test
 
   # ── Real API tests (recorded with VCR) ──
 
+  def setup_vcr_dummy_key
+    # Provider needs an API key to initialize, even during VCR playback.
+    # During recording, the real OPENCODE_API_KEY is used.
+    ENV["OPENCODE_API_KEY"] ||= "dummy-for-vcr"
+  end
+
   def test_send_and_stream_receives_response
     VCR.use_cassette("ask_agent_simple_chat") do
+      setup_vcr_dummy_key
       @adapter.start
       sid = @adapter.create_session("/tmp")
       events = []
@@ -70,6 +77,7 @@ class AskAgentAdapterTest < Minitest::Test
 
   def test_send_and_stream_yields_streaming_events
     VCR.use_cassette("ask_agent_streaming") do
+      setup_vcr_dummy_key
       @adapter.start
       sid = @adapter.create_session("/tmp")
       types = []
@@ -81,6 +89,7 @@ class AskAgentAdapterTest < Minitest::Test
 
   def test_send_message_returns_response
     VCR.use_cassette("ask_agent_send_message") do
+      setup_vcr_dummy_key
       @adapter.start
       sid = @adapter.create_session("/tmp")
       result = @adapter.send_message(sid, "Say hello")
