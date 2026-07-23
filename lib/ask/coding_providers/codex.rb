@@ -2,6 +2,7 @@
 
 require_relative "codex/app_server_client"
 require_relative "codex/adapter"
+require_relative "codex/codex_db"
 
 module Ask
   module CodingProviders

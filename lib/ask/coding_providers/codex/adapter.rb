@@ -8,16 +8,20 @@ module Ask
       # Communicates with `codex app-server` over stdio JSON-RPC 2.0.
       # Supports thread (session) lifecycle and streaming turns.
       class Adapter < Ask::CodingProviders::Adapter
-        def initialize(cwd: ".", cli_path: nil, request_timeout: 60.0)
+        def initialize(cwd: ".", cli_path: nil, request_timeout: 60.0, model: nil, model_provider: nil)
           @cwd = cwd
           @cli_path = cli_path
           @request_timeout = request_timeout
+          @model = model || ENV["CODEX_MODEL"]
+          @model_provider = model_provider || ENV["CODEX_MODEL_PROVIDER"]
           @client = nil
+          @codex_db = CodexDB.new
         end
 
         def start
           return if @client
-          @client = AppServerClient.new(cwd: @cwd, cli_path: @cli_path, request_timeout: @request_timeout)
+          @client = AppServerClient.new(cwd: @cwd, cli_path: @cli_path, request_timeout: @request_timeout,
+                                         model: @model, model_provider: @model_provider)
           @client.on_notification { |method, params, request_id| handle_notification(method, params, request_id) }
           @client.start
           # Perform the initialize handshake
@@ -137,8 +141,39 @@ module Ask
         end
 
         # Build a Codex adapter from config.
-        def self.from_config(workspace_path: Dir.pwd, cli_path: nil, request_timeout: 600, **)
-          new(cwd: workspace_path, cli_path: cli_path, request_timeout: request_timeout)
+        def self.from_config(workspace_path: Dir.pwd, cli_path: nil, request_timeout: 600, model: nil, model_provider: nil, **)
+          new(cwd: workspace_path, cli_path: cli_path, request_timeout: request_timeout,
+              model: model, model_provider: model_provider)
+        end
+
+        # ── Session/project queries (delegated to CodexDB) ──
+
+        def list_projects
+          @codex_db.list_projects
+        end
+
+        def find_sessions(directory:, limit: 20)
+          @codex_db.find_sessions(directory: directory, limit: limit)
+        end
+
+        def find_recent_session
+          @codex_db.find_recent_session
+        end
+
+        def find_recent_tui_session(workspace_path)
+          @codex_db.find_recent_tui_session(workspace_path)
+        end
+
+        def session_directory(session_id)
+          @codex_db.session_directory(session_id)
+        end
+
+        def session_history(session_id, limit: 100)
+          @codex_db.session_history(session_id, limit: limit)
+        end
+
+        def recent_sessions
+          @codex_db.recent_sessions
         end
 
         private

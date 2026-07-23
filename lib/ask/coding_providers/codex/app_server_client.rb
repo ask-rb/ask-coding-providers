@@ -20,10 +20,13 @@ module Ask
 
         attr_reader :cli_path
 
-        def initialize(cwd: ".", cli_path: nil, request_timeout: 30.0)
+        def initialize(cwd: ".", cli_path: nil, request_timeout: 30.0, model: nil, model_provider: nil)
           @cwd = cwd
           @cli_path = cli_path || self.class.resolve_cli_path
           @request_timeout = request_timeout
+          @model = model
+          @model_provider = model_provider
+          @extra_args = build_extra_args
           @mutex = Mutex.new
           @stdin = nil
           @event_handlers = []
@@ -37,7 +40,7 @@ module Ask
         def start
           @mutex.synchronize do
             return if @started
-            @stdin, stdout, stderr, @wait_thr = Open3.popen3(@cli_path, "app-server", "--stdio", chdir: @cwd)
+            @stdin, stdout, stderr, @wait_thr = Open3.popen3(@cli_path, "app-server", "--stdio", *@extra_args, chdir: @cwd)
 
             @stdout_thread = Thread.new(stdout) do |io|
               io.each_line do |line|
@@ -191,6 +194,13 @@ module Ask
         end
 
         private
+
+        def build_extra_args
+          args = []
+          args += ["-c", "model=#{@model}"] if @model
+          args += ["-c", "model_provider=#{@model_provider}"] if @model_provider
+          args
+        end
 
         def ensure_running
           raise Error, "app-server is not running. Call #start first." unless running?
