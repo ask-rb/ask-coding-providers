@@ -7,6 +7,12 @@ module Ask
       #
       # Communicates with `codex app-server` over stdio JSON-RPC 2.0.
       # Supports thread (session) lifecycle and streaming turns.
+      #
+      # @deprecated Use {Ask::CodingProviders::ACP::Adapter} with
+      #   `ACP_COMMAND='codex acp'` instead. Codex supports ACP natively
+      #   via the `codex acp` command. This adapter uses the older
+      #   `codex app-server` protocol directly and will not be extended
+      #   for new features.
       class Adapter < Ask::CodingProviders::Adapter
         def initialize(cwd: ".", cli_path: nil, request_timeout: 60.0, model: nil, model_provider: nil)
           @cwd = cwd

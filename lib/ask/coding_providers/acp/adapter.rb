@@ -9,10 +9,16 @@ module Ask
       #
       # ACP (Agent Client Protocol) is a JSON-RPC 2.0 standard for agent-editor
       # communication. This adapter wraps the ACP client into the generic
-      # {Ask::CodingProviders::Adapter} interface.
+      # {Ask::CodingProviders::Adapter} interface. It is the **primary
+      # recommended adapter** for new deployments.
       #
-      # Works with any ACP-compatible agent (Codex, Claude, Cursor, OpenCode)
-      # that exposes an ACP endpoint via their CLI.
+      # Works with any ACP-compatible agent:
+      # - **Codex** — `ACP_COMMAND='codex acp'` (native ACP support)
+      # - **Claude Code** — `ACP_COMMAND='claude acp'` (native ACP support)
+      # - **OpenCode** — `ACP_COMMAND='opencode acp'` (native ACP support)
+      # - **ZCode** — via ACP bridges like william0wang/zcode-acp or
+      #   alexeygrigorev/zcode-acp
+      # - **Gemini CLI** — `ACP_COMMAND='gemini-cli acp'` (native ACP support)
       #
       # @example
       #   adapter = Ask::CodingProviders::ACP::Adapter.new(

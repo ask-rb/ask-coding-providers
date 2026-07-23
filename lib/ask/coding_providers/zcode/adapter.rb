@@ -7,6 +7,13 @@ module Ask
       #
       # Uses AppServerClient for streaming bidirectional communication,
       # or falls back to Client for simple prompt-response mode.
+      #
+      # @deprecated Use {Ask::CodingProviders::ACP::Adapter} instead with
+      #   an ACP bridge for ZCode (e.g. william0wang/zcode-acp or
+      #   alexeygrigorev/zcode-acp). This adapter directly speaks ZCode's
+      #   private protocol and will not be extended for new features.
+      #   The ACP adapter works with any ACP-compatible agent including
+      #   ZCode via bridges, Codex (native), Claude, OpenCode, and more.
       class Adapter < Ask::CodingProviders::Adapter
         def initialize(cwd: ".", cli_path: nil, request_timeout: 60.0)
           @cwd = cwd
