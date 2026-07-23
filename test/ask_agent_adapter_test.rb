@@ -150,8 +150,8 @@ class AskAgentAdapterTest < Minitest::Test
     end
   end
 
-  def test_zcode_adapter_registered
-    klass = Ask::CodingProviders.resolve_adapter("zcode")
-    assert_equal Ask::CodingProviders::ZCode::Adapter, klass
+  def test_acp_adapter_registered
+    klass = Ask::CodingProviders.resolve_adapter("acp")
+    assert_equal Ask::CodingProviders::ACP::Adapter, klass
   end
 end

@@ -15,7 +15,7 @@ module Ask
     # The CLI resolves the active adapter via {build_adapter}.
     #
     # @example
-    #   adapter = Ask::CodingProviders.build_adapter("zcode", workspace_path: Dir.pwd)
+    #   adapter = Ask::CodingProviders.build_adapter("acp", workspace_path: Dir.pwd)
     #   adapter = Ask::CodingProviders.build_adapter("ask_agent", model: "deepseek-v4-flash")
     @adapter_registry = {}
 
