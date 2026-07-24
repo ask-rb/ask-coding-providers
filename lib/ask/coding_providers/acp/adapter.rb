@@ -46,7 +46,7 @@ module Ask
           return if @client
           @client = Ask::ACP::Client.new(command: @command, request_timeout: @request_timeout)
           @client.start
-          @client.initialize!(client_name: "ask-coder", client_version: "0.1.0")
+          @client.initialize!(client_name: "askoda", client_version: "0.1.0")
         end
 
         def stop

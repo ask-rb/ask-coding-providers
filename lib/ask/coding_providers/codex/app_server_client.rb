@@ -94,7 +94,7 @@ module Ask
         def initialize!
           result = request("initialize", {
             protocolVersion: "0.1.0",
-            clientInfo: { name: "ask-coder", version: "0.1.0" },
+            clientInfo: { name: "askoda", version: "0.1.0" },
             capabilities: {}
           })
           @initialized = true

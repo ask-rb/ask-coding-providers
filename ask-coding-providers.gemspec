@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.email = ["kaka@myrrlabs.com"]
 
   spec.summary = "Coding agent adapters for the ask-rb ecosystem"
-  spec.description = "Coding agent adapter interface and implementations (ZCode, Claude Code) for the ask-coder bridge."
+  spec.description = "Coding agent adapter interface and implementations (ACP, Codex, Claude, AskAgent) for the askoda ecosystem."
   spec.homepage = "https://github.com/ask-rb/ask-coding-providers"
   spec.license = "MIT"
 
