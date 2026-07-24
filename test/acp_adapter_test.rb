@@ -4,14 +4,13 @@ require_relative "test_helper"
 require "tmpdir"
 
 class ACPAdapterTest < Minitest::Test
-  MOCK_AGENT = File.expand_path("../fixtures/acp/mock_streaming_agent.rb", __dir__)
+  REPLAY_FIXTURE = File.expand_path("fixtures/acp/adapter_replay.jsonl", __dir__)
 
   def setup
     @tmpdir = Dir.mktmpdir("acp_adapter_test")
     @adapter = Ask::CodingProviders::ACP::Adapter.new(
-      command: ["ruby", MOCK_AGENT],
-      cwd: @tmpdir,
-      request_timeout: 5
+      replay: REPLAY_FIXTURE,
+      cwd: @tmpdir
     )
   end
 
@@ -91,23 +90,6 @@ class ACPAdapterTest < Minitest::Test
   def test_get_workspace_state_returns_empty
     @adapter.start
     assert_equal({}, @adapter.get_workspace_state("/tmp"))
-  end
-
-  def test_from_config_parses_command_string
-    ENV["ACP_COMMAND"] = "codex acp"
-    begin
-      adapter = Ask::CodingProviders::ACP::Adapter.from_config
-      assert_kind_of Ask::CodingProviders::ACP::Adapter, adapter
-    ensure
-      ENV.delete("ACP_COMMAND")
-    end
-  end
-
-  def test_from_config_raises_without_command
-    ENV.delete("ACP_COMMAND")
-    assert_raises(Ask::CodingProviders::ConfigurationError) do
-      Ask::CodingProviders::ACP::Adapter.from_config
-    end
   end
 
   def test_adapter_registered_in_registry

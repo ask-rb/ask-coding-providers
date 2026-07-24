@@ -32,19 +32,24 @@ module Ask
         # @param command [Array<String>] the command to spawn the ACP agent
         # @param cwd [String] working directory
         # @param request_timeout [Float] timeout for ACP requests
-        def initialize(command:, cwd: ".", request_timeout: 60.0)
+        def initialize(command: nil, cwd: ".", request_timeout: 60.0, replay: nil)
           require "ask/acp"
 
           @command = command
           @cwd = cwd
           @request_timeout = request_timeout
+          @replay = replay
           @client = nil
           @sessions = {}
         end
 
         def start
           return if @client
-          @client = Ask::ACP::Client.new(command: @command, request_timeout: @request_timeout)
+          if @replay
+            @client = Ask::ACP::ReplayClient.new(fixture_path: @replay)
+          else
+            @client = Ask::ACP::Client.new(command: @command, request_timeout: @request_timeout)
+          end
           @client.start
           @client.initialize!(client_name: "askoda", client_version: "0.1.0")
         end

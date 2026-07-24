@@ -1,0 +1,7 @@
+{"response":{"result":{"protocolVersion":1,"capabilities":{},"agentInfo":{"name":"mock","version":"1.0"}}}}
+{"response":{"result":{"session":{"id":"sess_replay_001","status":"running"}}}}
+{"notification":{"method":"session/update","params":{"sessionId":"sess_replay_001","update":{"sessionUpdate":"tool_call","kind":"read","content":[{"type":"text","text":"/tmp/file.rb"}]}}}}
+{"notification":{"method":"session/update","params":{"sessionId":"sess_replay_001","update":{"sessionUpdate":"tool_call_update","kind":"read","content":[{"type":"text","text":"File content"}]}}}}
+{"notification":{"method":"text","params":{"sessionId":"sess_replay_001","content":"Hello from replay!"}}}
+{"notification":{"method":"turn_complete","params":{"sessionId":"sess_replay_001"}}}
+{"response":{"result":{"status":"completed"}}}
