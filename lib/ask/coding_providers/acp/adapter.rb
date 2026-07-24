@@ -101,6 +101,29 @@ module Ask
                 type: "model.streaming", seq: 2,
                 payload: { "delta" => delta, "sessionId" => session_id }
               }) unless delta.empty?
+            when "session/update"
+              update = event.dig(:params, "update") || {}
+              case update["sessionUpdate"]
+              when "tool_call"
+                kind = update["kind"] || "unknown"
+                block.call({
+                  type: "tool.use", seq: 2,
+                  payload: {
+                    "sessionId" => session_id,
+                    "toolName" => kind,
+                    "input" => update["content"]
+                  }
+                })
+              when "tool_call_update"
+                block.call({
+                  type: "tool.result", seq: 2,
+                  payload: {
+                    "sessionId" => session_id,
+                    "toolName" => event.dig(:params, "kind") || "unknown",
+                    "output" => update["content"]
+                  }
+                })
+              end
             when "turn_complete"
               block.call({
                 type: "turn.completed", seq: 3,
