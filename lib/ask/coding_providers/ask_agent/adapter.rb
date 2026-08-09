@@ -77,15 +77,15 @@ module Ask
           { "eventSeq" => 0 }
         end
 
-        def send_message(session_id, content)
+        def send_message(session_id, content, attachments: nil)
           ensure_started
           # Run synchronously — returns when done
-          result = run_session(session_id, content)
+          result = run_session(session_id, content, attachments: attachments)
           { "response" => result }
         end
 
-        def send_and_stream(session_id, content, turn_timeout: 600.0, &block)
-          return enum_for(:send_and_stream, session_id, content, turn_timeout: turn_timeout) unless block
+        def send_and_stream(session_id, content, turn_timeout: 600.0, attachments: nil, &block)
+          return enum_for(:send_and_stream, session_id, content, turn_timeout: turn_timeout, attachments: attachments) unless block
           ensure_started
 
           # Build the ask-agent chat with our pre-configured provider
@@ -111,7 +111,7 @@ module Ask
           end
 
           begin
-            result = session.run(content)
+            result = session.run(content, attachments: attachments)
             block.call({
               type: "turn.completed", seq: 3,
               payload: { "response" => result, "sessionId" => session_id,
@@ -165,14 +165,14 @@ module Ask
           chat
         end
 
-        def run_session(session_id, content)
+        def run_session(session_id, content, attachments: nil)
           chat = build_chat
           session = Ask::Agent::Session.new(
             model: chat,
             max_turns: @max_turns,
             **@session_opts
           )
-          session.run(content)
+          session.run(content, attachments: attachments)
         end
       end
     end
