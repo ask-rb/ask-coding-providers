@@ -42,7 +42,7 @@ module Ask
           @client&.running? || false
         end
 
-        def create_session(workspace_path, mode: nil)
+        def create_session(workspace_path, mode: nil, system_prompt: nil, **)
           ensure_running
           thread = @client.thread_start(cwd: workspace_path)
           tid = thread["id"] || thread[:id]

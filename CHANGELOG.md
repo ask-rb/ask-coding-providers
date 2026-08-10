@@ -1,6 +1,19 @@
 # Changelog
 
-## [0.3.1] - 2026-08-10
+## [0.3.2] - 2026-08-10
+
+### Added
+
+- **Declarative agent sessions.** `create_session` accepts an `agent:`
+  name — the ask-agent convention (`agents/<name>/agent.rb` +
+  `instructions.md`, discovered from the working directory). The session
+  is built via `Ask::Agent.new`, so the definition's tools, skills
+  (agent_dir), and instructions apply, while harness-level options
+  (model, system prompt, approval, plan mode, todos) still win. The
+  emitting approval queue is passed through, so approval events stream
+  exactly like the plain path.
+
+
 
 ### Added
 

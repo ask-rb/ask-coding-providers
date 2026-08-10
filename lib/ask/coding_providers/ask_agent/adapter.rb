@@ -149,7 +149,13 @@ module Ask
         # @param model [String, nil] model override for this session
         # @param system_prompt [String, nil] system prompt override for this
         #   session (takes precedence over any system_prompt in session_opts)
-        def create_session(workspace_path, mode: nil, model: nil, system_prompt: nil)
+        # @param agent [String, nil] declarative agent name (ask-agent
+        #   convention: agents/<name>/agent.rb + instructions.md, discovered
+        #   from the workspace's working directory). When given, the session
+        #   is built via Ask::Agent.new so the definition's tools, skills,
+        #   and instructions apply; the harness-level options (model,
+        #   system_prompt, approval, plan mode, todos) still win.
+        def create_session(workspace_path, mode: nil, model: nil, system_prompt: nil, agent: nil)
           ensure_started
           sid = "sess_#{SecureRandom.uuid}"
           @mutex.synchronize do
@@ -158,6 +164,7 @@ module Ask
               mode: mode,
               model: model || @model_id,
               system_prompt: system_prompt,
+              agent: agent,
               created_at: Time.now,
               session: nil,
               subscribers: [],
@@ -367,35 +374,70 @@ module Ask
         # ── Session construction ──
 
         def build_session(entry)
+          session = entry[:agent] ? build_agent_session(entry) : build_plain_session(entry)
+          session.on_event { |event| translate_event(entry, session, event) }
+          session
+        end
+
+        # Build a session from a declarative agent definition (ask-agent
+        # convention). The definition's tools, skills (agent_dir), and
+        # instructions apply; harness-level options win where set. Agents
+        # are discovered from the working directory (the harness runs the
+        # session inside its workspace).
+        #
+        # The emitting approval queue is passed through Ask::Agent.new's
+        # opts, so Session#build_approval wires it with the session's
+        # apply/reject/register callbacks — approval events stream exactly
+        # like the plain path.
+        def build_agent_session(entry)
+          queue = emitting_queue(entry)
+          opts = {
+            approval: approval_config(queue),
+            plan_mode: @plan_mode,
+            todos: @todos,
+            max_turns: @max_turns,
+            # Caller options win over the definition; a nil model lets the
+            # definition's own model apply.
+            model: (entry[:model] unless entry[:model] == @model_id)
+          }.compact
+          opts[:system_prompt] = entry[:system_prompt] if entry[:system_prompt]
+          Ask::Agent.new(entry[:agent], **opts)
+        end
+
+        # Build the default session (no declarative agent).
+        def build_plain_session(entry)
           prompt = entry[:system_prompt] || @session_opts[:system_prompt]
           chat = build_chat(entry[:model], prompt)
-
-          queue = EmittingApprovalQueue.new(
-            on_submit: ->(a) { emit_approval(entry, a, :pending) },
-            on_status: ->(a) { emit_approval(entry, a, a.status) }
-          )
-
-          approval_cfg =
-            case @approval
-            when APPROVAL_REQUIRE then { queue: queue, require_approval: @approval_required }
-            when APPROVAL_AUTO then { queue: queue }
-            when APPROVAL_OFF then nil
-            else
-              raise ArgumentError, "approval must be one of #{APPROVAL_MODES.inspect}, got #{@approval.inspect}"
-            end
 
           Ask::Agent::Session.new(
             model: chat,
             tools: @tools,
             max_turns: @max_turns,
-            approval: approval_cfg,
+            approval: approval_config(emitting_queue(entry)),
             plan_mode: @plan_mode,
             todos: @todos,
             **@session_opts
-          ).tap do |session|
-            session.on_event { |event| translate_event(entry, session, event) }
+          )
+        end
+
+        def emitting_queue(entry)
+          EmittingApprovalQueue.new(
+            on_submit: ->(a) { emit_approval(entry, a, :pending) },
+            on_status: ->(a) { emit_approval(entry, a, a.status) }
+          )
+        end
+
+        def approval_config(queue)
+          case @approval
+          when APPROVAL_REQUIRE then { queue: queue, require_approval: @approval_required }
+          when APPROVAL_AUTO then { queue: queue }
+          when APPROVAL_OFF then nil
+          else
+            raise ArgumentError, "approval must be one of #{APPROVAL_MODES.inspect}, got #{@approval.inspect}"
           end
         end
+
+
 
         def build_chat(model_id, system_prompt = nil)
           chat = Ask::Agent::Chat.new(

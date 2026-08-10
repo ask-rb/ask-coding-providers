@@ -64,7 +64,7 @@ module Ask
           @client&.running? || false
         end
 
-        def create_session(workspace_path, mode: nil)
+        def create_session(workspace_path, mode: nil, system_prompt: nil, **)
           ensure_running
           params = { cwd: workspace_path || @cwd }
           session = @client.session_new(**params)

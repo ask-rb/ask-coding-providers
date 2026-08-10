@@ -14,7 +14,7 @@ module Ask
       # @param workspace_path [String] the working directory
       # @param mode [String, nil] permission mode
       # @return [String] the session ID
-      def create_session(workspace_path, mode: nil)
+      def create_session(workspace_path, mode: nil, system_prompt: nil, **)
         raise NotImplementedError, "#{self.class} must implement #create_session"
       end
 

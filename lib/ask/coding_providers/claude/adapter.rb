@@ -38,7 +38,7 @@ module Ask
           @started
         end
 
-        def create_session(workspace_path, mode: nil)
+        def create_session(workspace_path, mode: nil, system_prompt: nil, **)
           ensure_started
           sid = "sess_#{SecureRandom.uuid}"
           @sessions[sid] = { workspace: workspace_path, mode: mode, created_at: Time.now }
