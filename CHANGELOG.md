@@ -1,6 +1,25 @@
 # Changelog
 
-## [0.2.0] - 2026-08-10
+## [0.3.0] - 2026-08-10
+
+### Fixed
+
+- **Claude adapter streamed nothing** — the inner `each do |block|` loop
+  shadowed the method's `&block` parameter, so `block.call` invoked the
+  content Hash and every streaming turn failed. The loop variable is now
+  `content_block`; `model.streaming` events stream correctly.
+- **Codex session store** — `find_sessions` bound 2 parameters for 3 SQL
+  placeholders (silently returned `[]`); `find_recent_tui_session` passed
+  bind variables as separate arguments to `get_first_row` (silently
+  returned `nil`). Both now bind correctly.
+
+### Added
+
+- **External adapter tests** — Claude Code CLI streaming (stubbed
+  processes), Codex app-server client lifecycle, and read-only ZCode/Codex
+  session-store queries against temp SQLite fixtures. Full suite passes
+  the 70% coverage gate.
+
 
 ### Added
 

@@ -90,10 +90,12 @@ module Ask
               case event["type"]
               when "assistant"
                 msg = event["message"] || {}
-                (msg["content"] || []).each do |block|
-                  if block["type"] == "text" && block["text"]
-                    delta = block["text"]
+                (msg["content"] || []).each do |content_block|
+                  if content_block["type"] == "text" && content_block["text"]
+                    delta = content_block["text"]
                     accumulated += delta
+                    # NB: the inner loop variable must not shadow the
+                    # method's &block — block.call streams to the caller.
                     block.call({
                       type: "model.streaming", seq: 2,
                       payload: { "delta" => delta, "sessionId" => session_id }

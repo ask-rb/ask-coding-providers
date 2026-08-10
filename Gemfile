@@ -7,6 +7,7 @@ group :test do
   gem "rake", "~> 13.0"
   gem "simplecov", "~> 0.22"
   gem "vcr", "~> 6.4"
+  gem "sqlite3", "~> 2.0"
   gem "webmock", "~> 3.26"
   # Dependencies for AskAgent adapter (development/testing only)
   gem "ask-agent", path: "/Users/kaka/Code/ask-rb/ask-agent"

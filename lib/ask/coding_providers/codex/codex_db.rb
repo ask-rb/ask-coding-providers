@@ -55,7 +55,7 @@ module Ask
           return [] unless available?
 
           db = open_db
-          rows = db.execute(<<~SQL, [directory, directory])
+          rows = db.execute(<<~SQL, [directory, directory, limit])
             SELECT id, title, updated_at, preview
             FROM threads
             WHERE (cwd = ? OR ? LIKE cwd || '/%')
@@ -99,7 +99,7 @@ module Ask
           return nil unless available?
 
           db = open_db
-          row = db.get_first_row(<<~SQL, workspace_path, workspace_path)
+          row = db.get_first_row(<<~SQL, [workspace_path, workspace_path])
             SELECT id, title, cwd FROM threads
             WHERE (cwd = ? OR ? LIKE cwd || '/%')
               AND archived = 0
