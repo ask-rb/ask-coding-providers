@@ -4,8 +4,8 @@
 
 ### Added
 
-- **Per-session system prompts.**  accepts a
-   override for the session (takes precedence over the
+- **Per-session system prompts.** `create_session` accepts a
+  `system_prompt:` override for the session (takes precedence over the
   adapter-level  session option), so hosts like
   ask-coding-harness can give every workspace its own instructions.
 
