@@ -445,4 +445,37 @@ class AskAgentAdapterRichTest < Minitest::Test
     refute_nil failed, "expected turn.failed, got #{events.map { |e| e[:type] }}"
     assert_includes failed.dig(:payload, "error", "message"), "provider exploded"
   end
+
+  # ── Per-session system prompt ──
+
+  def test_create_session_accepts_system_prompt_override
+    stub = build_chat_stub(sequence: [ResponseMessage.new(content: "ok")])
+    applied = []
+    stub.define_singleton_method(:with_instructions) { |p| applied << p; stub }
+    adapter = Ask::CodingProviders::AskAgent::Adapter.new(
+      model: "deepseek-v4-flash", provider: "opencode_go", max_turns: 5
+    )
+    adapter.start
+    sid = adapter.create_session("/tmp", system_prompt: "Workspace-specific prompt")
+    adapter.send_and_stream(sid, "hi") { |_| }
+    assert_equal ["Workspace-specific prompt"], applied
+  ensure
+    adapter&.stop
+  end
+
+  def test_session_prompt_falls_back_to_adapter_session_opts
+    stub = build_chat_stub(sequence: [ResponseMessage.new(content: "ok")])
+    applied = []
+    stub.define_singleton_method(:with_instructions) { |p| applied << p; stub }
+    adapter = Ask::CodingProviders::AskAgent::Adapter.new(
+      model: "deepseek-v4-flash", provider: "opencode_go", max_turns: 5,
+      system_prompt: "Adapter-level prompt"
+    )
+    adapter.start
+    sid = adapter.create_session("/tmp")
+    adapter.send_and_stream(sid, "hi") { |_| }
+    assert_equal ["Adapter-level prompt"], applied
+  ensure
+    adapter&.stop
+  end
 end

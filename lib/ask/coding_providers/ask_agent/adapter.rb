@@ -147,7 +147,9 @@ module Ask
         # @param workspace_path [String] working directory
         # @param mode [String, nil] permission mode
         # @param model [String, nil] model override for this session
-        def create_session(workspace_path, mode: nil, model: nil)
+        # @param system_prompt [String, nil] system prompt override for this
+        #   session (takes precedence over any system_prompt in session_opts)
+        def create_session(workspace_path, mode: nil, model: nil, system_prompt: nil)
           ensure_started
           sid = "sess_#{SecureRandom.uuid}"
           @mutex.synchronize do
@@ -155,6 +157,7 @@ module Ask
               workspace: workspace_path,
               mode: mode,
               model: model || @model_id,
+              system_prompt: system_prompt,
               created_at: Time.now,
               session: nil,
               subscribers: [],
@@ -364,7 +367,8 @@ module Ask
         # ── Session construction ──
 
         def build_session(entry)
-          chat = build_chat(entry[:model])
+          prompt = entry[:system_prompt] || @session_opts[:system_prompt]
+          chat = build_chat(entry[:model], prompt)
 
           queue = EmittingApprovalQueue.new(
             on_submit: ->(a) { emit_approval(entry, a, :pending) },
@@ -393,12 +397,13 @@ module Ask
           end
         end
 
-        def build_chat(model_id)
+        def build_chat(model_id, system_prompt = nil)
           chat = Ask::Agent::Chat.new(
             model: model_id,
             provider: @provider_slug,
             tools: @tools
           )
+          chat.with_instructions(system_prompt) if system_prompt
           # Inject pre-configured provider to bypass Ask::Auth.resolve
           chat.instance_variable_set(:@provider, @provider)
           chat
