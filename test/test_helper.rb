@@ -11,6 +11,7 @@ end
 $LOAD_PATH.unshift File.expand_path("../lib", __dir__)
 $LOAD_PATH.unshift File.expand_path("../../ask-agent/lib", __dir__)
 $LOAD_PATH.unshift File.expand_path("../../ask-llm-providers/lib", __dir__)
+$LOAD_PATH.unshift File.expand_path("../../ask-permissions/lib", __dir__)
 $LOAD_PATH.unshift File.expand_path("../../ask-skills/lib", __dir__)
 $LOAD_PATH.unshift File.expand_path("../../ask-tools/lib", __dir__)
 

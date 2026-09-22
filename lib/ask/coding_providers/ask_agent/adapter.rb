@@ -9,6 +9,12 @@ rescue LoadError => e
   raise "Missing dependency for AskAgent adapter: #{e.message}. Add ask-agent and ask-llm-providers to your Gemfile."
 end
 
+begin
+  require "ask/permissions"
+rescue LoadError
+  require "ask-permissions"
+end
+
 module Ask
   module CodingProviders
     module AskAgent
@@ -19,11 +25,13 @@ module Ask
       # queue (see Session#build_approval); this subclass only adds
       # observation hooks on top, using its own listeners so the session's
       # on_submit (pending-tool registration) is never clobbered.
-      class EmittingApprovalQueue < Ask::Agent::ApprovalQueue
-        # @param on_submit [Proc, nil] called with the new {Action} after
-        #   submission (and after the auto-approval drain)
-        # @param on_status [Proc, nil] called with an {Action} whose status
-        #   changed to :approved or :rejected
+      class EmittingApprovalQueue < Ask::Permissions::ApprovalQueue
+        # @param on_submit [Proc, nil] called with the new
+        #   {Ask::Permissions::Action} after submission (and after the
+        #   auto-approval drain)
+        # @param on_status [Proc, nil] called with an
+        #   {Ask::Permissions::Action} whose status changed to :approved
+        #   or :rejected
         def initialize(on_submit: nil, on_status: nil, **kwargs)
           @on_action_submitted = on_submit
           @on_status = on_status
@@ -262,7 +270,7 @@ module Ask
         # Approve one queued tool action. Continues the turn (follow-up
         # turns run in this thread and stream to active subscribers).
         #
-        # @return [Array<Ask::Agent::ApprovalQueue::Action>]
+        # @return [Array<Ask::Permissions::Action>]
         def approve_action(session_id, action_id)
           queue = approval_queue(session_id)
           queue ? queue.approve(action_id) : []
