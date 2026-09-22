@@ -1,5 +1,16 @@
 # Changelog
 
+## [Unreleased]
+
+### Changed
+
+- **Approval queue extracted to `ask-permissions`.** The AskAgent adapter's
+  `EmittingApprovalQueue` now subclasses `Ask::Permissions::ApprovalQueue`
+  (docs reference `Ask::Permissions::Action`) instead of the ask-agent
+  classes. The gem declares a runtime dependency on `ask-permissions >= 0.1.0`
+  (local path in the Gemfile for development). Queue API and approval
+  event/callback behavior are unchanged.
+
 ## [0.3.2] - 2026-08-10
 
 ### Added

@@ -16,3 +16,6 @@ group :test do
   gem "ask-auth", path: "/Users/kaka/Code/ask-rb/ask-auth"
 end
 gem "ask-acp", path: "../ask-acp"
+
+permissions_path = File.expand_path("../ask-permissions", __dir__)
+gem "ask-permissions", path: permissions_path if File.directory?(permissions_path)
