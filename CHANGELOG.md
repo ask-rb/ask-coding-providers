@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [0.3.5] - 2026-09-23
+
 ### Changed
 
 - **Approval queue extracted to `ask-permissions`.** The AskAgent adapter's
