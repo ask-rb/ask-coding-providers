@@ -39,6 +39,13 @@ adapter = Ask::CodingProviders.build_adapter("ask_agent", model: "deepseek-v4-fl
 - Adapter interface (`Ask::CodingProviders::Adapter`): `create_session`,
   `resume_session`, `list_sessions`, `subscribe`, `send_message`,
   `send_and_stream`, `get_events`, `respond`, `get_workspace_state`.
+- AskAgent approval scopes: `approve_action(session_id, action_id, scope:
+  :once | :session)` and `approve_all(session_id, scope: ...)` pass the
+  scope through to `Ask::Permissions::ApprovalQueue#approve` /
+  `#approve_all`. `:once` (default) approves only the named action;
+  `:session` records a session grant (applied by `Ask::Agent::Session`)
+  so matching actions later in the session are auto-approved. `:project`
+  raises `ArgumentError` — this adapter never injects project grants.
 - `Ask::CodingProviders::ZCode::ZCodeDB` - read-only helper for querying
   ZCode's SQLite session store at `~/.zcode/cli/db/db.sqlite`. Methods
   (`list_projects`, `find_sessions`, `session_history`, `recent_sessions`,

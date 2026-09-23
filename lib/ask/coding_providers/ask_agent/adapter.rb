@@ -46,13 +46,15 @@ module Ask
 
         private
 
-        def apply(action)
+        # The base queue passes an extra argument (approval scope) to these
+        # hooks; forward everything to super and only observe the result.
+        def apply(action, ...)
           result = super
           @on_status&.call(action.with(status: :approved))
           result
         end
 
-        def reject_action(action)
+        def reject_action(action, ...)
           result = super
           @on_status&.call(action.with(status: :rejected))
           result
@@ -87,6 +89,14 @@ module Ask
         APPROVAL_REQUIRE = :require
         APPROVAL_AUTO = :auto
         APPROVAL_MODES = [APPROVAL_OFF, APPROVAL_REQUIRE, APPROVAL_AUTO].freeze
+
+        # Approval scopes this adapter accepts. :once approves only the
+        # named action; :session records a session grant (applied by
+        # Ask::Agent::Session before the approved action runs) so matching
+        # actions later in the session are auto-approved. :project is
+        # deliberately excluded: this adapter never injects project grants
+        # into the queue, so accepting it would be a silent no-op.
+        APPROVAL_SCOPES = %i[once session].freeze
 
         # How long a turn stays settled before it is considered complete
         # (protects against follow-up turns starting right after the queue
@@ -270,10 +280,15 @@ module Ask
         # Approve one queued tool action. Continues the turn (follow-up
         # turns run in this thread and stream to active subscribers).
         #
+        # @param scope [Symbol] :once (default) approves only this action;
+        #   :session records a session grant for matching later actions.
+        #   :project raises ArgumentError (no project grants injected).
+        # @raise [ArgumentError] for :project or unknown scopes
         # @return [Array<Ask::Permissions::Action>]
-        def approve_action(session_id, action_id)
+        def approve_action(session_id, action_id, scope: :once)
+          validate_approval_scope!(scope)
           queue = approval_queue(session_id)
-          queue ? queue.approve(action_id) : []
+          queue ? queue.approve(action_id, scope: scope) : []
         end
 
         def reject_action(session_id, action_id)
@@ -282,9 +297,13 @@ module Ask
         end
 
         # Approve all pending tool actions.
-        def approve_all(session_id)
+        #
+        # @param scope [Symbol] see {#approve_action}
+        # @raise [ArgumentError] for :project or unknown scopes
+        def approve_all(session_id, scope: :once)
+          validate_approval_scope!(scope)
           queue = approval_queue(session_id)
-          queue ? queue.approve_all : []
+          queue ? queue.approve_all(scope: scope) : []
         end
 
         def reject_all(session_id)
@@ -377,6 +396,21 @@ module Ask
 
         def approval_queue(session_id)
           session_entry(session_id)[:session]&.approval_queue
+        end
+
+        # Scope validation runs before the session/queue lookup so :project
+        # (and unknown scopes) raise even when no queue exists — never a
+        # silent no-op.
+        def validate_approval_scope!(scope)
+          return scope if APPROVAL_SCOPES.include?(scope)
+          if scope == :project
+            raise ArgumentError,
+                  "approval scope :project is not supported by the AskAgent adapter " \
+                  "(project grants are not injected here; use :once or :session)"
+          end
+          raise ArgumentError,
+                "approval scope must be one of #{APPROVAL_SCOPES.inspect} " \
+                "(this adapter does not support :project), got #{scope.inspect}"
         end
 
         # ── Session construction ──

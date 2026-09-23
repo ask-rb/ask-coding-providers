@@ -2,6 +2,18 @@
 
 ## [Unreleased]
 
+### Added
+
+- **Approval scopes on the AskAgent adapter.** `approve_action` and
+  `approve_all` accept `scope: :once | :session` (default `:once`) and
+  pass it through to `Ask::Permissions::ApprovalQueue#approve` /
+  `#approve_all`. `:session` records a session grant — applied by
+  `Ask::Agent::Session` before the approved action runs — so matching
+  actions later in the session are auto-approved; `:once` stays
+  one-shot. `:project` raises `ArgumentError` in this adapter: project
+  grants are never injected here, so accepting it would be a silent
+  no-op.
+
 ## [0.3.5] - 2026-09-23
 
 ### Changed
