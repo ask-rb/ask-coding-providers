@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-09-23
+
 ### Added
 
 - **Approval scopes on the AskAgent adapter.** `approve_action` and
@@ -13,7 +15,6 @@
   one-shot. `:project` raises `ArgumentError` in this adapter: project
   grants are never injected here, so accepting it would be a silent
   no-op.
-
 ## [0.3.5] - 2026-09-23
 
 ### Changed
