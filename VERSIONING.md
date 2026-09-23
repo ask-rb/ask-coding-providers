@@ -35,6 +35,11 @@ numbers are never reused or decremented.
 - Once a version is on RubyGems it is immutable: any further change takes
   the next patch number.
 
+### Patch digit rollover
+
+Patch digits range only from 0 through 9. After 9 the next release rolls
+the minor up by one and resets the patch to 0: `0.3.9` → `0.4.0`.
+
 ## Releases go through gemchain
 
 Every `ask-*` gem — ask-coding-providers included — and `yamine` is released
